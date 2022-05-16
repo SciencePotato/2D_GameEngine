@@ -8,7 +8,10 @@ created following his tutorial [Coding a 2D Game Engine in Java](https://www.you
 Resources that were extremely Helpful throughout the creation of this project besides [GamesWithGabe](https://www.youtube.com/channel/UCQP4qSCj1eHMHisDDR4iPzw)
 - [ThinMatrix](https://www.youtube.com/c/ThinMatrix)
 - [The Book of Shader](https://thebookofshaders.com/)
-- 
+- [Learn OpenGL](https://learnopengl.com/)
+- [RayTrace in a weekend](https://raytracing.github.io/)
+- [Scratchapixel](https://www.scratchapixel.com/)
+- [LWJGLgamedev](https://lwjglgamedev.gitbooks.io/3d-game-development-with-lwjgl/content/chapter03/chapter3.html)
 
 ## End Goal
 Hopefully, after the completion of this project, I will understand how to create a game engine, or render graphics using OpenGL 
