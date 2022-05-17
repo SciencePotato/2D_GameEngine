@@ -3,6 +3,7 @@ package Jade;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
+import util.Time;
 
 import java.util.Objects;
 
@@ -18,6 +19,7 @@ public class Window {
 
     private static Window window = null;
 
+    private static Scene currentScene = null;
 
     private Window() {
         this.width = 1920;
@@ -30,6 +32,20 @@ public class Window {
             Window.window = new Window();
         }
         return Window.window;
+    }
+
+    public static void changeScene(int newScene) {
+        switch (newScene){
+            case 0:
+                currentScene = new LevelEditorScene();
+                break;
+            case 1:
+                currentScene = new LevelScene();
+                break;
+            default:
+                assert false: "Unknown Scene" + newScene + "!";
+                break;
+        }
     }
 
     public void run() {
@@ -84,9 +100,15 @@ public class Window {
 
         // Make sure that you can use the context
         GL.createCapabilities();
+
+        Window.changeScene(0);
     }
 
     public void loop() {
+        float beginTime = Time.getTime();
+        float endTime;
+        float dt = -1.0f;
+
         while (!glfwWindowShouldClose(glfwWindow)) {
             glfwPollEvents();
 
@@ -96,8 +118,16 @@ public class Window {
             if(KeyListener.isKeyPressed(GLFW_KEY_SPACE))
                 System.out.println("Pressed");
 
+            if (dt >= 0)
+                currentScene.update(dt);
+
             // Swap buffer automatically
             glfwSwapBuffers(glfwWindow);
+
+            // dt = Delta time, time elapsed, and swap endTime with BeginTime
+            endTime = Time.getTime();
+            dt = endTime - beginTime;
+            beginTime = endTime;
         }
     }
 }
