@@ -6,7 +6,6 @@ import renderer.Shader;
 import renderer.Texture;
 import util.Time;
 
-import java.awt.event.KeyEvent;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
@@ -38,7 +37,7 @@ public class LevelEditorScene extends Scene{
             "    color = fColor;\n" +
             "}";
 
-    private int vertexID, fragmentID, shaderProgram;
+    // private int vertexID, fragmentID, shaderProgram;
     // Position, Color, UV Coordinate
     private float[] vertexArray = {
             100.5f, -0.5f, 0.0f,            1.0f, 0.0f, 0.0f, 1.0f,         1, 0, // Bottom Right
@@ -66,7 +65,7 @@ public class LevelEditorScene extends Scene{
         this.camera = new Camera(new Vector2f());
         defaultShader = new Shader("assets/shaders/default.glsl");
         defaultShader.compile();
-        this.testingTexture = new Texture("assets/images/testimg1.jpg");
+        this.testingTexture = new Texture("assets/images/testimg2.png");
 
         // Generating VAO
         vaoID = glGenVertexArrays();
