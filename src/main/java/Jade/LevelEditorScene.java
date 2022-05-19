@@ -1,5 +1,7 @@
 package Jade;
 
+import components.FontRenderer;
+import components.SpriteRenderer;
 import org.joml.Vector2f;
 import org.lwjgl.BufferUtils;
 import renderer.Shader;
@@ -57,15 +59,26 @@ public class LevelEditorScene extends Scene{
     private Shader defaultShader;
     private Texture testingTexture;
 
+    private boolean firstTime = false;
+    GameObject testObj;
+
     public LevelEditorScene() {
     }
 
     @Override
     public void init() {
+        System.out.println("Obj creating");
+        this.testObj = new GameObject("Test object");
+        this.testObj.addComponent(new SpriteRenderer());
+        this.testObj.addComponent(new FontRenderer());
+        this.addGameObjectToScene(this.testObj);
+
+
         this.camera = new Camera(new Vector2f());
         defaultShader = new Shader("assets/shaders/default.glsl");
         defaultShader.compile();
         this.testingTexture = new Texture("assets/images/testimg2.png");
+
 
         // Generating VAO
         vaoID = glGenVertexArrays();
@@ -141,5 +154,18 @@ public class LevelEditorScene extends Scene{
 
 
         defaultShader.detach();
+
+        if (!firstTime) {
+            System.out.println("Creating GameObject");
+            GameObject go = new GameObject("Game Test 2");
+            go.addComponent(new SpriteRenderer());
+            this.addGameObjectToScene(go);
+            firstTime = true;
+        }
+
+        for (GameObject go:
+             this.gameObject) {
+            go.update(dt);
+        }
     }
 }
